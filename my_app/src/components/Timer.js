@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Function to display time in mm:ss format
 const formatTime = time => {
@@ -11,6 +11,10 @@ const formatTime = time => {
 const Timer = ({ session, rest, isRunning, setIsRunning }) => {
   const [formattedTime, setFormattedTime] = useState(formatTime(session));
   const [timeLeft, setTimeLeft] = useState(session);
+
+  useEffect(() => {
+    setFormattedTime(formatTime(timeLeft));
+  }, [timeLeft]);
 
   const start_stop = () => {
       // Start timer
