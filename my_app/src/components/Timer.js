@@ -11,6 +11,7 @@ const formatTime = time => {
 const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSession, setRest, setIsRunning }) => {
   const [formattedTime, setFormattedTime] = useState(formatTime(session));
   const [timeLeft, setTimeLeft] = useState(session);
+  const [type, setType] = useState('Session');
 
   useEffect(() => {
     setFormattedTime(formatTime(timeLeft));
@@ -49,12 +50,13 @@ const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSe
 
       // Set time left to default session length
     setTimeLeft(DEFAULT_SESSION);
-    setFormattedTime(formatTime(DEFAULT_SESSION)); 
+    setFormattedTime(formatTime(DEFAULT_SESSION));
+    setType('Session');
   };  // End reset()
 
   return (
     <div id="timer">
-      <h2 id="timer-label">Session</h2>
+      <h2 id="timer-label">{type}</h2>
       <p id="time-left">{formattedTime}</p>
       <button id="start_stop" onClick={start_stop}>Start/Pause</button>
       <button id="reset" onClick={reset}>Reset</button>
