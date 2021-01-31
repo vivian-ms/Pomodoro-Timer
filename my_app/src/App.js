@@ -15,7 +15,7 @@ const App = () => {
     <div>
       <h1>Pomodoro Timer</h1>
 
-      <Timer session={session} rest={rest} isRunning={isRunning} setIsRunning={setIsRunning} />
+      <Timer DEFAULT_SESSION={DEFAULT_SESSION} DEFAULT_BREAK={DEFAULT_BREAK} session={session} rest={rest} setSession={setSession} setRest={setRest} isRunning={isRunning} setIsRunning={setIsRunning} />
     </div>
   );
 };  // End <App />
