@@ -8,7 +8,7 @@ const formatTime = time => {
 };  // End formatTime()
 
 
-const Timer = ({ session, rest, isRunning, setIsRunning }) => {
+const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSession, setRest, setIsRunning }) => {
   const [formattedTime, setFormattedTime] = useState(formatTime(session));
   const [timeLeft, setTimeLeft] = useState(session);
 
@@ -36,12 +36,28 @@ const Timer = ({ session, rest, isRunning, setIsRunning }) => {
     }
   };  // End start_stop()
 
+  const reset = () => {
+      // Stop timer if running
+    if (isRunning) {
+      clearInterval(isRunning);
+      setIsRunning(false);
+    }
+
+      // Reset session and break length to the default
+    setSession(DEFAULT_SESSION);
+    setRest(DEFAULT_BREAK);
+
+      // Set time left to default session length
+    setTimeLeft(DEFAULT_SESSION);
+    setFormattedTime(formatTime(DEFAULT_SESSION)); 
+  };  // End reset()
+
   return (
     <div id="timer">
       <h2 id="timer-label">Session</h2>
       <p id="time-left">{formattedTime}</p>
       <button id="start_stop" onClick={start_stop}>Start/Pause</button>
-      <button id="reset">Reset</button>
+      <button id="reset" onClick={reset}>Reset</button>
     </div>
   );
 };  // End <Timer />
