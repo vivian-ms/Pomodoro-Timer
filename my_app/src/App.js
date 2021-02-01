@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Timer from './components/Timer';
+import Control from './components/Control';
 
 
 const DEFAULT_SESSION = 25 * 60;  // 25 min
@@ -16,6 +17,9 @@ const App = () => {
       <h1>Pomodoro Timer</h1>
 
       <Timer DEFAULT_SESSION={DEFAULT_SESSION} DEFAULT_BREAK={DEFAULT_BREAK} session={session} rest={rest} setSession={setSession} setRest={setRest} isRunning={isRunning} setIsRunning={setIsRunning} />
+
+      <Control length={session} setLength={setSession} type="session" />
+      <Control length={rest} setLength={setRest} type="break" />
     </div>
   );
 };  // End <App />
