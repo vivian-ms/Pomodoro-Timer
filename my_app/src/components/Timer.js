@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 
 // Function to display time in mm:ss format
@@ -13,9 +13,14 @@ const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSe
   const [formattedTime, setFormattedTime] = useState(formatTime(session));
   const [timeLeft, setTimeLeft] = useState(session);
   const [type, setType] = useState('Session');
+  const audioRef = useRef(null);
 
   useEffect(() => {
     setFormattedTime(formatTime(timeLeft));
+
+    if (timeLeft === 0) {
+      audioRef.current.play();
+    }
 
     if (timeLeft < 0) {
       if (type === 'Session') {
@@ -57,6 +62,10 @@ const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSe
     setTimeLeft(DEFAULT_SESSION);
     setFormattedTime(formatTime(DEFAULT_SESSION));
     setType('Session');
+
+      // If audio is playing, stop it and rewind to the beginning
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
   };  // End reset()
 
   return (
@@ -65,6 +74,7 @@ const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSe
       <p id="time-left">{formattedTime}</p>
       <button id="start_stop" onClick={start_stop}>Start/Pause</button>
       <button id="reset" onClick={reset}>Reset</button>
+      <audio id="beep" ref={audioRef} src="https://www.soundjay.com/door/sounds/doorbell-5.mp3" />
     </div>
   );
 };  // End <Timer />
