@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+
 // Function to display time in mm:ss format
 const formatTime = time => {
   let sec = (time % 60).toString().padStart(2, '0');
@@ -15,19 +16,23 @@ const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSe
 
   useEffect(() => {
     setFormattedTime(formatTime(timeLeft));
-  }, [timeLeft]);
+
+    if (timeLeft < 0) {
+      if (type === 'Session') {
+        setType('Break');
+        setTimeLeft(rest);
+      } else if (type === 'Break') {
+        setType('Session');
+        setTimeLeft(session);
+      }
+    }
+  }, [timeLeft, type, session, rest]);  // End useEffect()
 
   const start_stop = () => {
       // Start timer
     if (!isRunning) {
       setIsRunning(setInterval(() => {
-        setTimeLeft(prevTimeLeft => {
-          if (prevTimeLeft > 0) {
-            return prevTimeLeft - 1;
-          } else {
-            return prevTimeLeft;
-          }
-        });
+        setTimeLeft(prevTimeLeft => prevTimeLeft - 1);
       }, 1000));
 
       // Pause timer
@@ -63,5 +68,6 @@ const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSe
     </div>
   );
 };  // End <Timer />
+
 
 export default Timer;
