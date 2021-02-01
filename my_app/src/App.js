@@ -18,8 +18,8 @@ const App = () => {
 
       <Timer DEFAULT_SESSION={DEFAULT_SESSION} DEFAULT_BREAK={DEFAULT_BREAK} session={session} rest={rest} setSession={setSession} setRest={setRest} isRunning={isRunning} setIsRunning={setIsRunning} />
 
-      <Control length={session} setLength={setSession} type="session" />
-      <Control length={rest} setLength={setRest} type="break" />
+      <Control length={session} setLength={setSession} type="session" isRunning={isRunning} />
+      <Control length={rest} setLength={setRest} type="break" isRunning={isRunning} />
     </div>
   );
 };  // End <App />
