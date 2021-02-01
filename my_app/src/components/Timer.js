@@ -15,6 +15,21 @@ const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSe
   const [type, setType] = useState('Session');
   const audioRef = useRef(null);
 
+
+  useEffect(() => {
+    if (type === 'Session') {
+      setTimeLeft(session);
+    }
+  }, [type, session]);  // End useEffect()
+
+
+  useEffect(() => {
+    if (type === 'Break') {
+      setTimeLeft(rest);
+    }
+  }, [type, rest]);  // End useEffect()
+
+
   useEffect(() => {
     setFormattedTime(formatTime(timeLeft));
 
@@ -33,6 +48,7 @@ const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSe
     }
   }, [timeLeft, type, session, rest]);  // End useEffect()
 
+
   const start_stop = () => {
       // Start timer
     if (!isRunning) {
@@ -46,6 +62,7 @@ const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSe
       setIsRunning(false);
     }
   };  // End start_stop()
+
 
   const reset = () => {
       // Stop timer if running
@@ -67,6 +84,7 @@ const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSe
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
   };  // End reset()
+
 
   return (
     <div id="timer">
