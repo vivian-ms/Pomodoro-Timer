@@ -1,0 +1,43 @@
+body {
+  background: black;
+  color: white;
+}
+
+h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 3rem;
+  font-style: italic;
+  font-variant: small-caps;
+}
+
+.label {
+  font-family: 'Lobster', cursive;
+}
+
+.time {
+  font-family: 'Oswald', sans-serif;
+}
+
+#timer-container {
+  width: 270px;
+  height: 270px;
+  box-shadow:
+    0px 0px 20px 5px white,
+    0px 0px 30px orangered;
+}
+
+#control-container {
+  width: 230px;
+  height: 230px;
+  box-shadow:
+    0px 0px 20px 5px white,
+    0px 0px 30px blue;
+}
+
+#timer-container, #control-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 50%;
+}
