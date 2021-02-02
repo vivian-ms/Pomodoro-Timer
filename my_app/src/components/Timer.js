@@ -87,12 +87,14 @@ const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSe
 
 
   return (
-    <div id="timer">
-      <h2 id="timer-label">{type}</h2>
-      <p id="time-left">{formattedTime}</p>
-      <button id="start_stop" onClick={start_stop}>Start/Pause</button>
-      <button id="reset" onClick={reset}>Reset</button>
-      <audio id="beep" ref={audioRef} src="https://www.soundjay.com/door/sounds/doorbell-5.mp3" />
+    <div id="timer-container" className="mx-auto p-3">
+      <div id="timer">
+        <h2 id="timer-label" className="label">{type}</h2>
+        <p id="time-left" className="display-4 time">{formattedTime}</p>
+        <button id="start_stop" className="btn btn-outline-primary mr-3" onClick={start_stop}>Start/Pause</button>
+        <button id="reset" className="btn btn-outline-danger" onClick={reset}>Reset</button>
+        <audio id="beep" ref={audioRef} src="https://www.soundjay.com/door/sounds/doorbell-5.mp3" />
+      </div>
     </div>
   );
 };  // End <Timer />

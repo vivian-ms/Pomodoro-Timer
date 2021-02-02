@@ -10,20 +10,22 @@ const Control = ({ length, setLength, type, isRunning }) => {
   };
 
   return (
-    <div id="control">
-      <h3 id={`${type}-label`}>
-        {`${type[0].toUpperCase()}${type.substring(1)} Length`}
-      </h3>
-      <p id="length-container">
-        <span id={`${type}-length`}>{length / 60}</span> min
-      </p>
+    <div id="control-container" className="mx-4 my-3">
+      <div id="control">
+        <h3 id={`${type}-label`} className="label">
+          {`${type[0].toUpperCase()}${type.substring(1)} Length`}
+        </h3>
+        <p id="length-container" className="h4 p-2">
+          <span id={`${type}-length`}>{length / 60}</span> min
+        </p>
 
-      {/* Disable buttons if timer is running */}
-      {/* Disable decrement if length < 1 min */}
-      <button id={`${type}-decrement`} onClick={decrement} disabled={(!isRunning && length > 60) ? false : true}>-</button>
+        {/* Disable buttons if timer is running */}
+        {/* Disable decrement if length < 1 min */}
+        <button id={`${type}-decrement`} className="btn btn-outline-primary btn-sm mr-3" onClick={decrement} disabled={(!isRunning && length > 60) ? false : true}>-</button>
 
-      {/* Disable increment if length > 60 min */}
-      <button id={`${type}-increment`} onClick={increment} disabled={(!isRunning && length < 3600) ? false : true}>+</button>
+        {/* Disable increment if length > 60 min */}
+        <button id={`${type}-increment`} className="btn btn-outline-primary btn-sm" onClick={increment} disabled={(!isRunning && length < 3600) ? false : true}>+</button>
+      </div>
     </div>
   );
 };  // End <Control />

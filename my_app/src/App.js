@@ -13,13 +13,15 @@ const App = () => {
   const [isRunning, setIsRunning] = useState(false);  // Timer not running
 
   return (
-    <div>
-      <h1>Pomodoro Timer</h1>
+    <div className="container-fluid p-3">
+      <h1 className="text-center mb-4">Pomodoro Timer</h1>
 
       <Timer DEFAULT_SESSION={DEFAULT_SESSION} DEFAULT_BREAK={DEFAULT_BREAK} session={session} rest={rest} setSession={setSession} setRest={setRest} isRunning={isRunning} setIsRunning={setIsRunning} />
 
-      <Control length={session} setLength={setSession} type="session" isRunning={isRunning} />
-      <Control length={rest} setLength={setRest} type="break" isRunning={isRunning} />
+      <div id="controls-container" className="d-flex justify-content-center flex-wrap">
+        <Control length={session} setLength={setSession} type="session" isRunning={isRunning} />
+        <Control length={rest} setLength={setRest} type="break" isRunning={isRunning} />
+      </div>
     </div>
   );
 };  // End <App />
