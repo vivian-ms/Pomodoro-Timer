@@ -21,10 +21,14 @@ const Control = ({ length, setLength, type, isRunning }) => {
 
         {/* Disable buttons if timer is running */}
         {/* Disable decrement if length < 1 min */}
-        <button id={`${type}-decrement`} className="btn btn-outline-primary btn-sm mr-3" onClick={decrement} disabled={(!isRunning && length > 60) ? false : true}>-</button>
+        <button id={`${type}-decrement`} className="btn btn-outline-primary btn-sm mr-3" onClick={decrement} disabled={(!isRunning && length > 60) ? false : true}>
+          <i className="fas fa-minus"></i>
+        </button>
 
         {/* Disable increment if length > 60 min */}
-        <button id={`${type}-increment`} className="btn btn-outline-primary btn-sm" onClick={increment} disabled={(!isRunning && length < 3600) ? false : true}>+</button>
+        <button id={`${type}-increment`} className="btn btn-outline-primary btn-sm" onClick={increment} disabled={(!isRunning && length < 3600) ? false : true}>
+          <i className="fas fa-plus"></i>
+        </button>
       </div>
     </div>
   );

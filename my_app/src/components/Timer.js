@@ -91,8 +91,12 @@ const Timer = ({ DEFAULT_SESSION, DEFAULT_BREAK, session, rest, isRunning, setSe
       <div id="timer">
         <h2 id="timer-label" className="label">{type}</h2>
         <p id="time-left" className="display-4 time">{formattedTime}</p>
-        <button id="start_stop" className="btn btn-outline-primary mr-3" onClick={start_stop}>Start/Pause</button>
-        <button id="reset" className="btn btn-outline-danger" onClick={reset}>Reset</button>
+        <button id="start_stop" className="btn btn-outline-primary mr-3" onClick={start_stop}>
+          {!isRunning ? <i className="fas fa-play"></i> : <i className="fas fa-pause"></i>}
+        </button>
+        <button id="reset" className="btn btn-outline-danger" onClick={reset}>
+          <i className="fas fa-redo"></i>
+        </button>
         <audio id="beep" ref={audioRef} src="https://www.soundjay.com/door/sounds/doorbell-5.mp3" />
       </div>
     </div>
